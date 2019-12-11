@@ -6,6 +6,11 @@
 void sort_berat(struct data_kendaraan dk[30],int x);
 void sort_nopol(struct data_kendaraan dk[30],int x);
 void sort_tujuan(struct data_kendaraan dk[30],int x);
+void sort_tiket(struct data_kendaraan dk[30],int x);
+void search_nopol(struct data_kendaraan dk[30], int x);
+void search_tiket(struct data_kendaraan dk[30], int x);
+void search_berat(struct data_kendaraan dk[30], int x);
+void view_search(struct data_kendaraan dk[30], int x);
 
 struct tgl_tiket {
 	int tanggal;
@@ -169,25 +174,7 @@ system("cls");
 			printf("1. Nomor Polisi \n");
 			printf("2. Tujuan \n");
 			printf("3. Jenis Kendaraan \n");
-			printf("Pilih : ");
-			printf("")
-			scanf("%d", &milih1);
-				switch(milih1){
-					case 1: search_nopol();
-				break;
-				}
-				}
-			
-				break;
-				
-		*/	
-				
-			case 5:
-				{
-			printf("Sorting Data ditinjau dari: \n");
-			printf("1. Berat Kendaraan \n");
-			printf("2. Nomor Polisi \n");
-			printf("3. Tujuan \n");
+			printf("4. no Tiket \n");
 			printf("Pilih : ");
 			scanf("%d", &milih);
 				switch(milih){
@@ -200,10 +187,37 @@ system("cls");
 					case 3: 
 					sort_tujuan(dk,x);
 				break;
+					case 4:
+					sort_tiket(dk,x);
 				}
+				break;
 				
 		
-
+				
+			case 5:
+				case 5:
+				{
+			printf("Sorting Data ditinjau dari: \n");
+			printf("1. Berat Kendaraan \n");
+			printf("2. Nomor Polisi \n");
+			printf("3. Tujuan \n");
+			printf("4. no Tiket \n");
+			printf("Pilih : ");
+			scanf("%d", &milih);
+				switch(milih){
+					case 1: 
+					sort_berat(dk,x);
+				break;
+					case 2: 
+					sort_nopol(dk,x);
+				break;
+					case 3: 
+					sort_tujuan(dk,x);
+				break;
+					case 4:
+					sort_tiket(dk,x);
+				}
+				
 					
 			break;
 			
@@ -219,7 +233,24 @@ system("cls");
 
 	}
 }
-
+void sort_tiket(struct data_kendaraan dk[30],int x){
+	struct data_kendaraan temp;
+	int i,j;
+	for(i=1; i<x; i++){
+		temp=dk[i];
+		j=i-1;
+		while(temp.no_tiket < dk[j].no_tiket && j>=0){
+			dk[j+1]=dk[j];
+			j=j-1;
+		}
+	dk[j+1]=temp;
+	}
+printf("tiket yang diurutkan \n");
+	for(x=0;x<=i;x++){
+	printf("\nno tiket : %s \nno pol: %s",dk[x].no_tiket, dk[x].nopol);
+			
+			}	
+}
 void sort_berat(struct data_kendaraan dk[30],int x){
 	struct data_kendaraan temp;
 	int i,j;
@@ -278,3 +309,24 @@ void sort_tujuan(struct data_kendaraan dk[30], int x){
 			
 			}
 	 }
+void search_nopol(struct data_kendaraan dk[30], int x){
+			struct data_kendaraan cari;
+			
+				int i,j;
+				int k=0;
+				printf("Masukkan No Polisi : ");
+				scanf("%s",&cari.nopol);
+				
+			for(i=0;i<x;i++){
+        if (strcmp(cari.nopol,dk[i].nopol)==0){
+        	j=i;
+        	k=1;
+    					}
+			}
+		if(k=!1){
+			printf("Data tidak ditemukan");
+		}
+		else{
+			printf("Data Ada");
+		}
+	}
