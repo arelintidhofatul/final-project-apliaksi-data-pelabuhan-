@@ -1,3 +1,12 @@
+#include <stdio.h>
+#include <conio.h>
+#include <stdlib.h>
+#include <string.h>
+
+void sort_berat(struct data_kendaraan dk[30],int x);
+void sort_nopol(struct data_kendaraan dk[30],int x);
+void sort_tujuan(struct data_kendaraan dk[30],int x);
+
 struct tgl_tiket {
 	int tanggal;
 	int bulan;
@@ -210,3 +219,62 @@ system("cls");
 
 	}
 }
+
+void sort_berat(struct data_kendaraan dk[30],int x){
+	struct data_kendaraan temp;
+	int i,j;
+	for(i=1; i<x; i++){
+		temp=dk[i];
+		j=i-1;
+		while(temp.bobot < dk[j].bobot && j>=0){
+			dk[j+1]=dk[j];
+			j=j-1;
+		}
+	dk[j+1]=temp;
+	}
+	
+	printf("berat yang diurutkan \n");
+	for(int t=0;t<x;t++){
+		printf("\nberat : %f\nno pol: %s",dk[t].bobot, dk[t].nopol);
+	}
+}
+	 		
+void sort_nopol(struct data_kendaraan dk[30], int x){
+	struct data_kendaraan temp;
+	 		int i,j;
+				
+				 
+			for(i=1; i<x; i++){
+				temp=dk[i];
+				j=i-1;
+				while(strcmp(temp.nopol, dk[j].nopol)<0 &&j>=0){
+				dk[j+1]=dk[j];
+				j=j-1;
+				}
+			dk[j+1]=temp;
+			}
+	printf("no polisi yang diurutkan \n");
+	for(x=0; x<=i;x++){
+	printf("\nno polisi : %s\njenis kendaraan : %s",dk[x].nopol,dk[x].jenis_kendaraan);
+		
+		}
+	 }
+	 
+void sort_tujuan(struct data_kendaraan dk[30], int x){
+	struct data_kendaraan temp;	 			
+			int i,j;
+			for(i=1; i<x; i++){
+				temp=dk[i];
+				j=i-1;
+				while(temp.tujuan < dk[j].tujuan &&j>=0){
+				dk[j+1]=dk[j];
+				j=j-1;
+				}
+			dk[j+1]=temp;
+			}
+	printf("tujuan yang diurutkan \n");
+	for(x=0;x<=i;x++){
+	printf("tujuan : %s, no pol: %s",dk[j].tujuan, dk[j].nopol);
+			
+			}
+	 }
