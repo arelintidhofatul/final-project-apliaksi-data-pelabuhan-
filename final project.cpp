@@ -11,6 +11,7 @@ void search_nopol(struct data_kendaraan dk[30], int x);
 void search_tiket(struct data_kendaraan dk[30], int x);
 void search_berat(struct data_kendaraan dk[30], int x);
 void view_search(struct data_kendaraan dk[30], int x);
+void update(struct data_kendaraan dk[30], int x);
 
 struct tgl_tiket {
 	int tanggal;
@@ -167,34 +168,38 @@ system("cls");
 		}
 				break;
 			
-		
-		/*	case 4:
+			case 3:{
+					printf("Masukkan Nomor Tiket yang ingin di ubah: ");
+				scanf("%d",dk[x].no_tiket);
+				update(dk,x);
+				break;
+			}
+			
+			case 4:
 				{
 			printf("Cari data ditinjau dari: \n");
 			printf("1. Nomor Polisi \n");
-			printf("2. Tujuan \n");
-			printf("3. Jenis Kendaraan \n");
-			printf("4. no Tiket \n");
+			printf("2. tiket \n");
+			printf("3. bobot \n");
 			printf("Pilih : ");
-			scanf("%d", &milih);
-				switch(milih){
-					case 1: 
-					sort_berat(dk,x);
+			printf("");
+			scanf("%d", &milih1);
+				switch(milih1){
+					case 1: sort_nopol(dk,x);
+					search_nopol(dk,x);
 				break;
-					case 2: 
-					sort_nopol(dk,x);
+					case 2: sort_tiket(dk,x); 
+					search_tiket(dk,x);
 				break;
-					case 3: 
-					sort_tujuan(dk,x);
-				break;
-					case 4:
-					sort_tiket(dk,x);
+					case 3: sort_berat(dk,x);
+					search_berat(dk,x);
+				}
 				}
 				break;
 				
 		
 				
-			case 5:
+			
 				case 5:
 				{
 			printf("Sorting Data ditinjau dari: \n");
@@ -330,3 +335,79 @@ void search_nopol(struct data_kendaraan dk[30], int x){
 			printf("Data Ada");
 		}
 	}
+	
+void search_tiket(struct data_kendaraan dk[30],int x){//search id(interpolation)
+    int tik,d;
+    printf("Masukkan no Tiket Yang Ingin Dicari : ");
+    scanf("%d",&tik);
+    int low=0;
+    int high=x-1;
+    int flag=-1;
+    while( low<=high && tik>=dk[low].no_tiket  &&  tik<=dk[high].no_tiket ){
+        d = (tik-dk[low].no_tiket)/(dk[high].no_tiket-dk[low].no_tiket)*(high-low)+low;
+        if(dk[d].no_tiket<tik){
+            high = d-1;
+        }
+        else if(dk[d].no_tiket<tik){
+            low = d+1;
+        }
+        else{
+            flag=1;
+            break;
+        }
+    }
+    if(flag!=1){
+        printf("\nData tidak ditemukan");
+    }
+    else{
+        printf("\nData ditemukan");
+    }
+}
+	
+	void search_berat(struct data_kendaraan dk[30],int x){//search id(interpolation)
+    int brt,d;
+    printf("Masukkan Berat Yang Ingin Dicari : ");
+    scanf("%d",&brt);
+    int low=0;
+    int high=x-1;
+    int flag=-1;
+    while( low<=high && brt>=dk[low].bobot  &&  brt<=dk[high].bobot  ){
+        d = (brt-dk[low].bobot)/dk[high].bobot-dk[low].bobot*(high-low)+low;
+        if(dk[d].bobot>brt){
+            high = d-1;
+        }
+        else if(dk[d].bobot<brt){
+            low = d+1;
+        }
+        else{
+            flag=1;
+            break;
+        }
+    }
+    if(flag!=1){
+        printf("\nData tidak ditemukan");
+    }
+    else{
+        printf("\nData Ada");	
+				}	
+		}
+
+void update(struct data_kendaraan dk[30], int x){
+	int i,j;
+	for(i=0;i<x;i++){
+		if(dk[i].no_tiket==j){
+			printf("Nomer Tiket     : ");
+			scanf("%d",dk[j].no_tiket);
+			printf("Nomer Kendaraan	: ");
+			scanf("%d",dk[j].nopol);
+			printf("Jenis Kendaraan	: ");
+			scanf("%s",dk[j].jenis_kendaraan);
+			printf("Bobot Kendaraan	: ");
+			scanf("%d",&dk[j].bobot);
+			printf("Tujuan Pelabuhan: ");
+			scanf("%s",dk[j].tujuan);
+		
+		}
+	}
+	
+}
