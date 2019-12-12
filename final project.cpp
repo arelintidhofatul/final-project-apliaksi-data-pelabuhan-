@@ -42,6 +42,7 @@ int main (int argc,char** argv){
 	int milih;
 	int milih1;
 	
+	
 	while(pilihan==1){
 	 printf("\n================================================================\n");
 	 printf("|                      APLIKASI PELABUHAN                      |\n");
@@ -145,6 +146,21 @@ system("cls");
 							
 							
 					}
+					
+					
+					//INPUTAN TANGGAL TIKET
+					printf("----------------------------------------------------------------\n");
+					printf("Masukkan Tanggal Tiket \n");
+					printf("Tanggal\t: ");
+					scanf("%d",&dk[x].tkt.tanggal);	
+					printf("Bulan\t: ");
+					scanf("%d",&dk[x].tkt.bulan);
+					printf("Tahun\t: ");
+					scanf("%d",&dk[x].tkt.tahun);
+					
+					
+					
+							fflush(stdin);
 					printf("----------------------------------------------------------------\n");
 					printf("Data Berhasil Disimpan !!");
 					
@@ -159,10 +175,12 @@ system("cls");
 					{
 			printf("INFO DATA KENDARAAN	 \n");
 			for(y=0;y<x;y++){
+				printf("Nomor Tiket            : %d\n",dk[y].no_tiket);
 				printf("Nomor Polisi           : %s\n",dk[y].nopol);
 				printf("Jenis Kendaraan        : %s\n",dk[y].jenis_kendaraan);
 				printf("Berat Kendaraan        : %f\n",dk[y].bobot);
 				printf("Tujuan                 : %s\n",dk[y].tujuan);
+				printf("Tgl Tiket              : %d-%d-%d\n",dk[y].tkt.tanggal,dk[y].tkt.bulan,dk[y].tkt.tahun);
 				printf("\n\n");
 				}	
 		}
@@ -194,8 +212,9 @@ system("cls");
 					case 3: sort_berat(dk,x);
 					search_berat(dk,x);
 				}
-				}
 				break;
+				}
+				
 				
 		
 				
@@ -224,9 +243,14 @@ system("cls");
 				}
 				
 					
-			break;
 			
+			break;
 		
+		}
+		
+		case 6:{
+			exit;
+			break;
 		}
 		
 		printf("\nApakah Anda Ingin Melakukan Aktivitas Lain ? \n");
@@ -394,18 +418,17 @@ void search_tiket(struct data_kendaraan dk[30],int x){//search id(interpolation)
 
 void update(struct data_kendaraan dk[30], int x){
 	int i,j;
-	for(i=0;i<x;i++){
-		if(dk[i].no_tiket==j){
-			printf("Nomer Tiket     : ");
-			scanf("%d",dk[j].no_tiket);
-			printf("Nomer Kendaraan	: ");
-			scanf("%d",dk[j].nopol);
-			printf("Jenis Kendaraan	: ");
-			scanf("%s",dk[j].jenis_kendaraan);
+	for(i=0;i<j;i++){
+		if(dk[i].no_tiket==x){
+		
+			printf("Masukkan Nomor Kendaraan Anda : ");
+						gets(dk[j].nopol);fflush(stdin);	
+		/*	printf("Jenis Kendaraan	: ");
+			scanf("%s",&dk[i].jenis_kendaraan);
 			printf("Bobot Kendaraan	: ");
-			scanf("%d",&dk[j].bobot);
+			scanf("%d",&dk[i].bobot);
 			printf("Tujuan Pelabuhan: ");
-			scanf("%s",dk[j].tujuan);
+			scanf("%s",&dk[i].tujuan);*/
 		
 		}
 	}
